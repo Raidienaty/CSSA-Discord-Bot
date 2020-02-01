@@ -42,6 +42,28 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Discord.Addons.Interactive": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            },
+            "Discord.Net": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Discord.Net.Commands": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Discord.Net.Core": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Discord.Net.WebSocket": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
