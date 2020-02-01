@@ -1,0 +1,10 @@
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\bin\Debug\netcoreapp3.1\CSSA-Discord-Bot.exe
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\bin\Debug\netcoreapp3.1\CSSA-Discord-Bot.deps.json
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\bin\Debug\netcoreapp3.1\CSSA-Discord-Bot.runtimeconfig.json
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\bin\Debug\netcoreapp3.1\CSSA-Discord-Bot.runtimeconfig.dev.json
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\bin\Debug\netcoreapp3.1\CSSA-Discord-Bot.dll
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\bin\Debug\netcoreapp3.1\CSSA-Discord-Bot.pdb
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\CSSA-Discord-Bot.AssemblyInfoInputs.cache
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\CSSA-Discord-Bot.AssemblyInfo.cs
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\CSSA-Discord-Bot.dll
+C:\Users\jcand\src\CSSA-Discord-Bot\ConsoleApp1\ConsoleApp1\obj\Debug\netcoreapp3.1\CSSA-Discord-Bot.pdb
