@@ -6,6 +6,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Discord.Net;
 using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace CSSA_Discord_Bot
@@ -21,11 +22,22 @@ namespace CSSA_Discord_Bot
 
             build.WithTitle("List of Commands");
 
+            /*Console.WriteLine("Before foreach");
+            foreach (var item in getCommandNames())
+            {
+                build.AddField(item, "");
+            }*/
+
             build.AddField("help", "Lists the commands possible");
 
             build.WithColor(Color.Blue);
 
             await Context.Channel.SendMessageAsync("", false, build.Build());
+        }
+
+        private string[] getCommandNames()
+        {
+            return Directory.GetFiles(@"../Commands", "*.cs").Select(Path.GetFileName).ToArray();
         }
     }
 }
