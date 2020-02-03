@@ -23,6 +23,7 @@ namespace CSSA_Discord_Bot
 
             client = new DiscordSocketClient(new DiscordSocketConfig
             {
+                MessageCacheSize = 20,
                 LogLevel = LogSeverity.Debug
             });
 
@@ -38,6 +39,8 @@ namespace CSSA_Discord_Bot
 
             client.Ready += Client_Ready;
             client.Log += Client_Log;
+            client.MessageUpdated += MessageUpdate;
+            client.MessageDeleted += MessageDeleted;
 
             await client.LoginAsync(TokenType.Bot, keyPull.FilePull(@"F:/Storage/CSSA-Key.txt"));
             await client.StartAsync();
@@ -67,10 +70,23 @@ namespace CSSA_Discord_Bot
             if (!(Message.HasCharPrefix('?', ref ArgPos) || Message.HasMentionPrefix(client.CurrentUser, ref ArgPos))) return;
 
             var Result = await Commands.ExecuteAsync(Context, ArgPos, null);
+
             if (!Result.IsSuccess)
             {
-                Console.WriteLine($"{DateTime.Now} at Commands] Something went wrong with executing a command Text: {Context.Message.Content} | Error: {Result.ErrorReason}");
+                Console.WriteLine($"[{DateTime.Now} at Commands] Something went wrong with executing a command Text: {Context.Message.Content} | Error: {Result.ErrorReason}");
             }
+        }
+
+        private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
+        {
+            var message = await before.GetOrDownloadAsync();
+            Console.WriteLine($"Message updated: {message} -> {after}");
+        }
+
+        private async Task MessageDeleted(Cacheable<IMessage, ulong> cachedMessage, ISocketMessageChannel channel)
+        {
+            var message = await cachedMessage.GetOrDownloadAsync();
+            Console.WriteLine($"Message deleted: {message} in {channel.Name}");
         }
     }
 }
