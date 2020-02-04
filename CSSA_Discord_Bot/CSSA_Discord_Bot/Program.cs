@@ -77,16 +77,37 @@ namespace CSSA_Discord_Bot
             }
         }
 
-        private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel channel)
+        private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel socketChannel) //Message Update Handler
         {
-            var message = await before.GetOrDownloadAsync();
-            Console.WriteLine($"Message updated: {message} -> {after}");
+            var _logChannel = client.GetChannel(674027105167868003) as IMessageChannel; //Reads log channel for posting
+            var message = await before.GetOrDownloadAsync(); //Reads message prior to the change which is stored in cache
+
+            EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of update to message 
+                .WithAuthor(message.Author)
+                .WithColor(Color.Blue)
+                .AddField("Before", message)
+                .AddField("After", after)
+                .WithCurrentTimestamp()
+                .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id);
+            
+            var embed = builder.Build(); //Turns Embed builder to an Embed ready for posting
+            await _logChannel.SendMessageAsync("", false, embed: embed); //Posting Embed to log channel
         }
 
-        private async Task MessageDeleted(Cacheable<IMessage, ulong> cachedMessage, ISocketMessageChannel channel)
+        private async Task MessageDeleted(Cacheable<IMessage, ulong> cachedMessage, ISocketMessageChannel socketChannel) //Message Deleted Handler
         {
-            var message = await cachedMessage.GetOrDownloadAsync();
-            Console.WriteLine($"Message deleted: {message} in {channel.Name}");
+            var _messageChannel = socketChannel as IMentionable; //Reads the socketChannel as a mentionable channel
+            var _logChannel = client.GetChannel(674027105167868003) as IMessageChannel; //Reads in the log channel for posting
+            var message = await cachedMessage.GetOrDownloadAsync(); //Reads the message in the cache (deleted message)
+
+            EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of original deletion 
+                .WithAuthor(message.Author)
+                .WithColor(Color.Blue)
+                .WithCurrentTimestamp()
+                .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id);
+                builder.WithDescription("**Message sent by " + message.Author.Mention + " deleted in **" + _messageChannel.Mention + "\n" + message.Content);
+            var embed = builder.Build(); //Turns into actual embed for posting
+            await _logChannel.SendMessageAsync("", false, embed: embed); //Posting to the log channel
         }
     }
-}
+} 
