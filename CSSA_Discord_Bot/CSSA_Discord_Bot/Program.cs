@@ -87,6 +87,7 @@ namespace CSSA_Discord_Bot
                 .WithColor(Color.Blue)
                 .AddField("Before", message)
                 .AddField("After", after)
+                .AddField("\u200B", "\n" + message.GetJumpUrl())
                 .WithCurrentTimestamp()
                 .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id);
             
@@ -104,8 +105,9 @@ namespace CSSA_Discord_Bot
                 .WithAuthor(message.Author)
                 .WithColor(Color.Blue)
                 .WithCurrentTimestamp()
-                .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id);
-                builder.WithDescription("**Message sent by " + message.Author.Mention + " deleted in **" + _messageChannel.Mention + "\n" + message.Content);
+                .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id)
+                .WithDescription("**Message sent by " + message.Author.Mention + " deleted in **" + _messageChannel.Mention + "\n" + message.Content);
+            
             var embed = builder.Build(); //Turns into actual embed for posting
             await _logChannel.SendMessageAsync("", false, embed: embed); //Posting to the log channel
         }
