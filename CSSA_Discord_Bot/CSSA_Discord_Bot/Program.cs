@@ -79,7 +79,7 @@ namespace CSSA_Discord_Bot
 
         private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel socketChannel) //Message Update Handler
         {
-            var _logChannel = client.GetChannel(674027105167868003) as IMessageChannel; //Reads log channel for posting
+            var _logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads log channel for posting
             var message = await before.GetOrDownloadAsync(); //Reads message prior to the change which is stored in cache
 
             EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of update to message 
@@ -98,7 +98,7 @@ namespace CSSA_Discord_Bot
         private async Task MessageDeleted(Cacheable<IMessage, ulong> cachedMessage, ISocketMessageChannel socketChannel) //Message Deleted Handler
         {
             var _messageChannel = socketChannel as IMentionable; //Reads the socketChannel as a mentionable channel
-            var _logChannel = client.GetChannel(674027105167868003) as IMessageChannel; //Reads in the log channel for posting
+            var _logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads in the log channel for posting
             var message = await cachedMessage.GetOrDownloadAsync(); //Reads the message in the cache (deleted message)
 
             EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of original deletion 
