@@ -4755,26 +4755,23 @@
   },
   "packageFolders": {
     "C:\\Users\\jcand\\.nuget\\packages\\": {},
-    "F:\\Microsoft\\Xamarin\\NuGet\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jcand\\src\\CSSA-Discord-Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot.csproj",
+      "projectUniqueName": "D:\\Storage\\CodingProjects\\C#\\CSSA-Discord-Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot.csproj",
       "projectName": "CSSA_Discord_Bot",
-      "projectPath": "C:\\Users\\jcand\\src\\CSSA-Discord-Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot.csproj",
+      "projectPath": "D:\\Storage\\CodingProjects\\C#\\CSSA-Discord-Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot.csproj",
       "packagesPath": "C:\\Users\\jcand\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jcand\\src\\CSSA-Discord-Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot\\obj\\",
+      "outputPath": "D:\\Storage\\CodingProjects\\C#\\CSSA-Discord-Bot\\CSSA_Discord_Bot\\CSSA_Discord_Bot\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "F:\\Microsoft\\Xamarin\\NuGet\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\jcand\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -4833,7 +4830,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
