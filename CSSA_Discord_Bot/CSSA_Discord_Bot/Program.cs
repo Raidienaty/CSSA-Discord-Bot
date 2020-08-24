@@ -127,8 +127,9 @@ namespace CSSA_Discord_Bot
         //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_ReactionAdded
         private async Task ReactionAdded(Cacheable<IUserMessage, ulong> cachedMessage, ISocketMessageChannel originChannel, SocketReaction reaction)
         {
-            var messages = originChannel.GetMessagesAsync().FlattenAsync();
-            var postedUser = cachedMessage.DownloadAsync().Result.Author as SocketGuildUser;
+            var messages = originChannel.GetMessagesAsync().FlattenAsync().Result;
+            var storedMessage = cachedMessage.DownloadAsync().Result;
+            var postedUser = storedMessage.Author as SocketGuildUser;
             var user = reaction.User.Value as SocketGuildUser;
             if (!(originChannel.Id == 747115357571121193))
                 return;
@@ -139,10 +140,9 @@ namespace CSSA_Discord_Bot
 
             Console.WriteLine("Reaction added!");
             
-            var userReactions = await cachedMessage.DownloadAsync().Result.GetReactionUsersAsync(reaction.Emote, 100).FlattenAsync();
             var guild = user.Guild;
 
-            Console.WriteLine(messages.Result.ToArray().Length + " " + cachedMessage.DownloadAsync().Result.Id);
+            Console.WriteLine(messages.ToArray().Length + " " + storedMessage.Id);
 
             CourseLevel[] courseLevels = GetCourseLevels();
 
@@ -150,7 +150,7 @@ namespace CSSA_Discord_Bot
             {
                 foreach (var course in courseLevels[i].Course)
                 {
-                    if (messages.Result.ToArray()[courseLevels.Length - 1 - i].Id == cachedMessage.DownloadAsync().Result.Id)
+                    if (messages.ToArray()[courseLevels.Length - 1 - i].Id == storedMessage.Id)
                     {
                         if (reaction.Emote.Name == course.courseEmoteUnicode)
                         {
@@ -159,12 +159,13 @@ namespace CSSA_Discord_Bot
                             else
                                 await user.AddRoleAsync(guild.GetRole(course.courseRoleID));
 
-                            await cachedMessage.DownloadAsync().Result.RemoveReactionAsync(reaction.Emote, user);
+                            await storedMessage.RemoveReactionAsync(reaction.Emote, user);
                             return;
                         }
                     }
                 }
             }
+
         }
 
         private CourseLevel[] GetCourseLevels()
