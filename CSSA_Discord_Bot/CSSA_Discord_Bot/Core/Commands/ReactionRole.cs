@@ -5,6 +5,7 @@ using Discord;
 using Discord.Commands;
 using System.Threading.Tasks;
 using CSSA_Discord_Bot.Core.Data;
+using Microsoft.VisualBasic;
 
 namespace CSSA_Discord_Bot.Core.Commands
 {
@@ -14,10 +15,15 @@ namespace CSSA_Discord_Bot.Core.Commands
         public async Task courseReactionRoles()
         {
             Embed[] courseEmbeds = createEmbeds();
+            CourseLevel[] courseLevels = GetCourseLevels();
 
-            foreach (var embed in courseEmbeds)
+            for (int i = 0; i < courseEmbeds.Length; i++)
             {
-                await Context.Channel.SendMessageAsync("", false, embed);
+                var messageEmbed = Context.Channel.SendMessageAsync("", false, courseEmbeds[i]).Result;
+                foreach (Course course in courseLevels[i].Course)
+                {
+                    await messageEmbed.AddReactionAsync(new Emoji(course.courseEmoteUnicode.ToString()));
+                }
             }
         }
 
