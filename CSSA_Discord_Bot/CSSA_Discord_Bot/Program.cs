@@ -85,6 +85,10 @@ namespace CSSA_Discord_Bot
         //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_MessageUpdated
         private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel socketChannel) //Message Update Handler
         {
+            if (before.DownloadAsync().Result.Embeds.Count > 0)
+                return;
+            if (after.Embeds.Count > 0)
+                return;
             var _logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads log channel for posting
             var message = await before.GetOrDownloadAsync(); //Reads message prior to the change which is stored in cache
 

@@ -31,8 +31,11 @@ namespace CSSA_Discord_Bot.Core.Commands
             var cs400sCourseLevel = courseLevels[3];
 
             var CS100sEmbed = createEmbedFromCourseLevel(cs100sCourseLevel);
+            var CS200sEmbed = createEmbedFromCourseLevel(cs200sCourseLevel);
+            var CS300sEmbed = createEmbedFromCourseLevel(cs300sCourseLevel);
+            var CS400sEmbed = createEmbedFromCourseLevel(cs400sCourseLevel);
 
-            Embed[] courseEmbeds = { CS100sEmbed };
+            Embed[] courseEmbeds = { CS100sEmbed, CS200sEmbed, CS300sEmbed, CS400sEmbed };
 
             return courseEmbeds;
         }
@@ -45,7 +48,7 @@ namespace CSSA_Discord_Bot.Core.Commands
 
             foreach (var course in courseLevel.Course)
             {
-                embedBuilder.Description += Emote.Parse(course.courseEmoteUnicode) + " " + course.courseID + course.courseName + "\n";
+                embedBuilder.Description += course.courseEmoteUnicode + " " + course.courseID + " " + course.courseName + "\n";
             }
 
             return embedBuilder.Build();
