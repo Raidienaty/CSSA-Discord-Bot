@@ -1,0 +1,48 @@
+{
+    "courseLevelName": "CS200s",
+    "Course":
+    [
+        {
+            "courseID": "CS203",
+            "courseName": "Sophomore Software Engineering 1",
+            "courseEmoteUnicode": "\u0031\u20E3",
+            "courseRoleID": 747138267862007889
+        },
+        {
+            "courseID": "CS204",
+            "courseName": "Sophomore Software Engineering 2",
+            "courseEmoteUnicode": "\u0032\u20E3",
+            "courseRoleID": 747138342877003847
+        },
+        {
+            "courseID": "CS217",
+            "courseName": "Object Oriented Programming",
+            "courseEmoteUnicode": "\u0033\u20E3",
+            "courseRoleID": 747138368709722303
+        },
+        {
+            "courseID": "CS218",
+            "courseName": "Data Structures and Algorithms",
+            "courseEmoteUnicode": "\u0034\u20E3",
+            "courseRoleID": 747138411747475497
+        },
+        {
+            "courseID": "CS219",
+            "courseName": "Computer Architecture",
+            "courseEmoteUnicode": "\u0035\u20E3",
+            "courseRoleID": 747138434765815979
+        },
+        {
+            "courseID": "CS231",
+            "courseName": "Database Systems",
+            "courseEmoteUnicode": "\u0036\u20E3",
+            "courseRoleID": 747138462540365894
+        },
+        {
+            "courseID": "CS238",
+            "courseName": "UNIX Programming",
+            "courseEmoteUnicode": "\u0037\u20E3",
+            "courseRoleID": 747138481641488500
+        }
+    ]
+}

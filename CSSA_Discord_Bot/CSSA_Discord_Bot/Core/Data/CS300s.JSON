@@ -1,0 +1,54 @@
+{
+    "courseLevelName": "CS300s",
+    "Course":
+    [
+        {
+            "courseID": "CS303",
+            "courseName": "Junior Software Engineering 1",
+            "courseEmoteUnicode": "\u0031\u20E3",
+            "courseRoleID": 747142417173446737
+        },
+        {
+            "courseID": "CS304",
+            "courseName": "Junior Software Engineering 2",
+            "courseEmoteUnicode": "\u0032\u20E3",
+            "courseRoleID": 747142452988739615
+        },
+        {
+            "courseID": "CS312",
+            "courseName": "Analysis of Algorithms",
+            "courseEmoteUnicode": "\u0033\u20E3",
+            "courseRoleID": 747142474228564070
+        },
+        {
+            "courseID": "CS317",
+            "courseName": "Computer Networks",
+            "courseEmoteUnicode": "\u0034\u20E3",
+            "courseRoleID": 747142496869416972
+        },
+        {
+            "courseID": "CS321",
+            "courseName": "Programming Language Concepts",
+            "courseEmoteUnicode": "\u0035\u20E3",
+            "courseRoleID": 747142517073641615
+        },
+        {
+            "courseID": "CS328",
+            "courseName": "Embedded Systems",
+            "courseEmoteUnicode": "\u0036\u20E3",
+            "courseRoleID": 747142539206983780
+        },
+        {
+            "courseID": "CS331",
+            "courseName": "Computer Security",
+            "courseEmoteUnicode": "\u0037\u20E3",
+            "courseRoleID": 747142573595820133
+        },
+        {
+            "courseID": "CS361",
+            "courseName": "Computer Software and Operating Systems",
+            "courseEmoteUnicode": "\u0038\u20E3",
+            "courseRoleID": 747142589752541224
+        }
+    ]
+}

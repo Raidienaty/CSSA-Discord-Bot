@@ -1,0 +1,24 @@
+{
+    "courseLevelName": "CS100s",
+    "Course":
+    [
+        {
+            "courseID": "CS110",
+            "courseName": "Fundamentals of Programming",
+            "courseEmoteUnicode": "\u0031\u20E3",
+            "courseRoleID": 747137070169849987
+        },
+        {
+            "courseID": "CS113",
+            "courseName": "Introduction to Programming",
+            "courseEmoteUnicode": "\u0032\u20E3",
+            "courseRoleID": 747137158707544135
+        },
+        {
+            "courseID": "CS114",
+            "courseName": "Introduction to Software Engineering",
+            "courseEmoteUnicode": "\u0033\u20E3",
+            "courseRoleID": 747137233647173672
+        }
+    ]
+}

@@ -34,15 +34,14 @@ D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\Discord.Net.Rest.dll
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\Discord.Net.Webhook.dll
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\Discord.Net.WebSocket.dll
-D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
-D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\System.Interactive.Async.dll
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.csprojAssemblyReference.cache
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.AssemblyInfoInputs.cache
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.AssemblyInfo.cs
-D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.csproj.CoreCompileInputs.cache
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.csproj.CopyComplete
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.dll
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.pdb
 D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.genruntimeconfig.cache
+D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\bin\Debug\netcoreapp3.1\System.Linq.Async.dll
+D:\Storage\CodingProjects\C#\CSSA-Discord-Bot\CSSA_Discord_Bot\CSSA_Discord_Bot\obj\Debug\netcoreapp3.1\CSSA_Discord_Bot.csproj.CoreCompileInputs.cache

@@ -1,0 +1,36 @@
+{
+    "courseLevelName": "C400s",
+    "Course":
+    [
+        {
+            "courseID": "CS407",
+            "courseName": "Principles of Machine Learning",
+            "courseEmoteUnicode": "\u0031\u20E3",
+            "courseRoleID": 739995044575969300
+        },
+        {
+            "courseID": "CS411",
+            "courseName": "Artificial Intelligence",
+            "courseEmoteUnicode": "\u0032\u20E3",
+            "courseRoleID": 747144264282013992
+        },
+        {
+            "courseID": "CS413",
+            "courseName": "Software Engineering Project I",
+            "courseEmoteUnicode": "\u0033\u20E3",
+            "courseRoleID": 747144286109302854
+        },
+        {
+            "courseID": "CS414",
+            "courseName": "Software Engineering Project II",
+            "courseEmoteUnicode": "\u0034\u20E3",
+            "courseRoleID": 747144359455096935
+        },
+        {
+            "courseID": "CS425",
+            "courseName": "Systems Architecture",
+            "courseEmoteUnicode": "\u0035\u20E3",
+            "courseRoleID": 747144391306772601
+        }
+    ]
+}

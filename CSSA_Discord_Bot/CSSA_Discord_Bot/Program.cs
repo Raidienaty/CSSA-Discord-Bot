@@ -313,7 +313,6 @@ namespace CSSA_Discord_Bot
                         await user.AddRoleAsync(guild.GetRole(747144391306772601));
                 }
             }
-            //await cachedMessage.DownloadAsync().Result.AddReactionAsync(new Emoji("\uD83D\uDC4C"));
 
             await cachedMessage.DownloadAsync().Result.RemoveReactionAsync(reaction.Emote, user);
         }
