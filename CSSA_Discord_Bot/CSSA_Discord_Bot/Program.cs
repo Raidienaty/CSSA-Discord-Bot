@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using CSSA_Discord_Bot.Core.Data;
 
 namespace CSSA_Discord_Bot
 {
@@ -143,182 +144,36 @@ namespace CSSA_Discord_Bot
 
             Console.WriteLine(messages.Result.ToArray().Length + " " + cachedMessage.DownloadAsync().Result.Id);
 
-            if (messages.Result.ToArray()[4].Id == cachedMessage.DownloadAsync().Result.Id)
-            {
-                if (reaction.Emote.Name == "\u0031\u20E3") //110
-                {
-                    if (user.Roles.Contains(guild.GetRole(747137070169849987)))
-                        await user.RemoveRoleAsync(guild.GetRole(747137070169849987));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747137070169849987));
-                }
-                else if (reaction.Emote.Name == "\u0032\u20E3") //113
-                {
-                    if (user.Roles.Contains(guild.GetRole(747137158707544135)))
-                        await user.RemoveRoleAsync(guild.GetRole(747137158707544135));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747137158707544135));
-                }
-                else if (reaction.Emote.Name == "\u0033\u20E3") //114
-                {
-                    if (user.Roles.Contains(guild.GetRole(747137233647173672)))
-                        await user.RemoveRoleAsync(guild.GetRole(747137233647173672));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747137233647173672));
-                }
+            CourseLevel[] courseLevels = GetCourseLevels();
 
-            }
-            else if (messages.Result.ToArray()[3].Id == cachedMessage.DownloadAsync().Result.Id)
+            for (int i = 0; i < courseLevels.Length; i++)
             {
-                if (reaction.Emote.Name == "\u0031\u20E3") //203
+                foreach (var course in courseLevels[i].Course)
                 {
-                    if (user.Roles.Contains(guild.GetRole(747138267862007889)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138267862007889));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138267862007889));
-                }
-                else if (reaction.Emote.Name == "\u0032\u20E3") //204
-                {
-                    if (user.Roles.Contains(guild.GetRole(747138342877003847)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138342877003847));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138342877003847));
-                }
-                else if (reaction.Emote.Name == "\u0033\u20E3") //217
-                {
-                    if (user.Roles.Contains(guild.GetRole(747138368709722303)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138368709722303));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138368709722303));
-                }
-                else if (reaction.Emote.Name == "\u0034\u20E3") //218
-                {
-                    if (user.Roles.Contains(guild.GetRole(747138411747475497)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138411747475497));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138411747475497));
-                }
-                else if (reaction.Emote.Name == "\u0035\u20E3") //219
-                {
-                    if (user.Roles.Contains(guild.GetRole(747138434765815979)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138434765815979));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138434765815979));
-                }
-                else if (reaction.Emote.Name == "\u0036\u20E3") //231
-                {
-                    if (user.Roles.Contains(guild.GetRole(747138462540365894)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138462540365894));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138462540365894));
-                }
-                else if (reaction.Emote.Name == "\u0037\u20E3") //238
-                {
-                    if (user.Roles.Contains(guild.GetRole(747138481641488500)))
-                        await user.RemoveRoleAsync(guild.GetRole(747138481641488500));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747138481641488500));
-                }
-            }
-            else if (messages.Result.ToArray()[2].Id == cachedMessage.DownloadAsync().Result.Id)
-            {
-                if (reaction.Emote.Name == "\u0031\u20E3") //303
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142417173446737)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142417173446737));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142417173446737));
-                }
-                else if (reaction.Emote.Name == "\u0032\u20E3") //304
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142452988739615)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142452988739615));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142452988739615));
-                }
-                else if (reaction.Emote.Name == "\u0033\u20E3") //312
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142474228564070)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142474228564070));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142474228564070));
-                }
-                else if (reaction.Emote.Name == "\u0034\u20E3") //317
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142496869416972)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142496869416972));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142496869416972));
-                }
-                else if (reaction.Emote.Name == "\u0035\u20E3") //321
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142517073641615)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142517073641615));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142517073641615));
-                }
-                else if (reaction.Emote.Name == "\u0036\u20E3") //328
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142539206983780)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142539206983780));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142539206983780));
-                }
-                else if (reaction.Emote.Name == "\u0037\u20E3") //331
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142573595820133)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142573595820133));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142573595820133));
-                }
-                else if (reaction.Emote.Name == "\u0038\u20E3") //361
-                {
-                    if (user.Roles.Contains(guild.GetRole(747142589752541224)))
-                        await user.RemoveRoleAsync(guild.GetRole(747142589752541224));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747142589752541224));
-                }
-            }
-            else if (messages.Result.ToArray()[1].Id == cachedMessage.DownloadAsync().Result.Id)
-            {
-                if (reaction.Emote.Name == "\u0031\u20E3") //407
-                {
-                    if (user.Roles.Contains(guild.GetRole(739995044575969300)))
-                        await user.RemoveRoleAsync(guild.GetRole(739995044575969300));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(739995044575969300));
-                }
-                else if (reaction.Emote.Name == "\u0032\u20E3") //411
-                {
-                    if (user.Roles.Contains(guild.GetRole(747144264282013992)))
-                        await user.RemoveRoleAsync(guild.GetRole(747144264282013992));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747144264282013992));
-                }
-                else if (reaction.Emote.Name == "\u0033\u20E3") //413
-                {
-                    if (user.Roles.Contains(guild.GetRole(747144286109302854)))
-                        await user.RemoveRoleAsync(guild.GetRole(747144286109302854));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747144286109302854));
-                }
-                else if (reaction.Emote.Name == "\u0034\u20E3") //414
-                {
-                    if (user.Roles.Contains(guild.GetRole(747144359455096935)))
-                        await user.RemoveRoleAsync(guild.GetRole(747144359455096935));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747144359455096935));
-                }
-                else if (reaction.Emote.Name == "\u0035\u20E3") //425
-                {
-                    if (user.Roles.Contains(guild.GetRole(747144391306772601)))
-                        await user.RemoveRoleAsync(guild.GetRole(747144391306772601));
-                    else
-                        await user.AddRoleAsync(guild.GetRole(747144391306772601));
-                }
-            }
+                    if (messages.Result.ToArray()[courseLevels.Length - 1 - i].Id == cachedMessage.DownloadAsync().Result.Id)
+                    {
+                        if (reaction.Emote.Name == course.courseEmoteUnicode)
+                        {
+                            if (user.Roles.Contains(guild.GetRole(course.courseRoleID)))
+                                await user.RemoveRoleAsync(guild.GetRole(course.courseRoleID));
+                            else
+                                await user.AddRoleAsync(guild.GetRole(course.courseRoleID));
 
-            await cachedMessage.DownloadAsync().Result.RemoveReactionAsync(reaction.Emote, user);
+                            await cachedMessage.DownloadAsync().Result.RemoveReactionAsync(reaction.Emote, user);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+        private CourseLevel[] GetCourseLevels()
+        {
+            var parser = new JSONParser();
+
+            CourseLevel[] courseLevels = parser.courseLevelsJSONParser();
+
+            return courseLevels;
         }
     }
 } 
