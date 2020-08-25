@@ -37,15 +37,15 @@ namespace CSSA_Discord_Bot
                 LogLevel = LogSeverity.Debug
             });
 
-            client.MessageReceived += Client_MessageReceived;
-            await Commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
-
             //Events
-            client.Ready += Client_Ready;
-            client.Log += Client_Log;
+            client.Ready += ClientReady;
+            client.Log += ClientLog;
+            client.MessageReceived += MessageReceived;
             client.MessageUpdated += MessageUpdate;
             client.MessageDeleted += MessageDeleted;
             client.ReactionAdded += ReactionAdded;
+            
+            await Commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
 
             await client.LoginAsync(TokenType.Bot, keyPull.FilePull(@"D:/Storage/Keys/CSSADiscordBotKey.txt"));
             await client.StartAsync();
@@ -53,17 +53,18 @@ namespace CSSA_Discord_Bot
             await Task.Delay(-1);
         }
 
-        private async Task Client_Log(LogMessage Message)
+        private async Task ClientLog(LogMessage Message)
         {
             Console.WriteLine($"{DateTime.Now} at {Message.Source}] {Message.Message} ");
         }
 
-        private async Task Client_Ready()
+        private async Task ClientReady()
         {
             await client.SetGameAsync("Helping people");
         }
 
-        private async Task Client_MessageReceived(SocketMessage MessageParam)
+        //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_MessageReceived
+        private async Task MessageReceived(SocketMessage MessageParam)
         {
             var Message = MessageParam as SocketUserMessage;
             if (Message == null)
@@ -151,17 +152,17 @@ namespace CSSA_Discord_Bot
 
         private async Task logDeletedMessage(IMessage deletedMessage, IMentionable messageChannelDeletedFrom)
         {
-            var logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads in the log channel for posting
+            var logChannel = client.GetChannel(674307924662812682) as IMessageChannel;
 
-            EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of original deletion 
+            EmbedBuilder builder = new EmbedBuilder() 
                 .WithAuthor(deletedMessage.Author)
                 .WithColor(Color.Blue)
                 .WithCurrentTimestamp()
                 .WithFooter("Author ID: " + deletedMessage.Author.Id + " | Message ID: " + deletedMessage.Id)
                 .WithDescription("**Message sent by " + deletedMessage.Author.Mention + " deleted in **" + messageChannelDeletedFrom.Mention + "\n" + deletedMessage.Content);
 
-            var embed = builder.Build(); //Turns into actual embed for posting
-            await logChannel.SendMessageAsync("", false, embed: embed); //Posting to the log channel
+            var embed = builder.Build(); 
+            await logChannel.SendMessageAsync("", false, embed: embed); 
         }
 
         private async Task logUpdatedMessage(IMessage beforeMessage, SocketMessage afterMessage, ISocketMessageChannel socketChannel)
