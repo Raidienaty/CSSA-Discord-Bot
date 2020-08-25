@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using CSSA_Discord_Bot.Core.Data;
+using System.Collections.Generic;
 
 namespace CSSA_Discord_Bot
 {
@@ -107,65 +108,88 @@ namespace CSSA_Discord_Bot
         }
 
         //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_MessageDeleted
-        private async Task MessageDeleted(Cacheable<IMessage, ulong> cachedMessage, ISocketMessageChannel socketChannel) //Message Deleted Handler
+        private async Task MessageDeleted(Cacheable<IMessage, ulong> cachedMessage, ISocketMessageChannel socketChannel) //Message Deleted Event
         {
-            var _messageChannel = socketChannel as IMentionable; //Reads the socketChannel as a mentionable channel
-            var _logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads in the log channel for posting
-            var message = await cachedMessage.GetOrDownloadAsync(); //Reads the message in the cache (deleted message)
+            var messageChannel = socketChannel as IMentionable; 
+            var message = await cachedMessage.GetOrDownloadAsync();
 
-            EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of original deletion 
-                .WithAuthor(message.Author)
-                .WithColor(Color.Blue)
-                .WithCurrentTimestamp()
-                .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id)
-                .WithDescription("**Message sent by " + message.Author.Mention + " deleted in **" + _messageChannel.Mention + "\n" + message.Content);
-            
-            var embed = builder.Build(); //Turns into actual embed for posting
-            await _logChannel.SendMessageAsync("", false, embed: embed); //Posting to the log channel
+            await logDeletedMessage(message, messageChannel);
         }
 
         //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_ReactionAdded
         private async Task ReactionAdded(Cacheable<IUserMessage, ulong> cachedMessage, ISocketMessageChannel originChannel, SocketReaction reaction)
         {
-            var messages = originChannel.GetMessagesAsync().FlattenAsync().Result;
-            var storedMessage = cachedMessage.DownloadAsync().Result;
-            var postedUser = storedMessage.Author as SocketGuildUser;
+            var messagesInChannel = originChannel.GetMessagesAsync().FlattenAsync().Result;
+            var messageReactedTo = cachedMessage.DownloadAsync().Result;
+            var originalPoster = messageReactedTo.Author as SocketGuildUser;
             var user = reaction.User.Value as SocketGuildUser;
-            if (!(originChannel.Id == 747115357571121193))
+
+            if (!(originChannel.Id == 747115357571121193)) //Checks for channel being #reaction-roles
                 return;
             if (user.IsBot)
                 return;
-            if (!postedUser.IsBot)
+            if (!originalPoster.IsBot)
                 return;
 
-            Console.WriteLine("Reaction added!");
-            
+            await roleSetForReactionRole(messageReactedTo, reaction, messagesInChannel);
+        }
+
+        private async Task roleSetForReactionRole(IUserMessage messageReactedTo, SocketReaction reaction, IEnumerable<IMessage> messagesInChannel)
+        {
+            var user = reaction.User.Value as SocketGuildUser;
             var guild = user.Guild;
-
-            Console.WriteLine(messages.ToArray().Length + " " + storedMessage.Id);
-
             CourseLevel[] courseLevels = GetCourseLevels();
 
             for (int i = 0; i < courseLevels.Length; i++)
             {
                 foreach (var course in courseLevels[i].Course)
                 {
-                    if (messages.ToArray()[courseLevels.Length - 1 - i].Id == storedMessage.Id)
+                    if (checkIfMessagesContainMessage(messagesInChannel, messageReactedTo))
                     {
-                        if (reaction.Emote.Name == course.courseEmoteUnicode)
+                        if (checkIfReactionsAreSame(reaction, course.courseEmoteUnicode))
                         {
                             if (user.Roles.Contains(guild.GetRole(course.courseRoleID)))
                                 await user.RemoveRoleAsync(guild.GetRole(course.courseRoleID));
                             else
                                 await user.AddRoleAsync(guild.GetRole(course.courseRoleID));
 
-                            await storedMessage.RemoveReactionAsync(reaction.Emote, user);
+                            await messageReactedTo.RemoveReactionAsync(reaction.Emote, user);
                             return;
                         }
                     }
                 }
             }
+        }
 
+        private async Task logDeletedMessage(IMessage deletedMessage, IMentionable messageChannelDeletedFrom)
+        {
+            var logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads in the log channel for posting
+
+            EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of original deletion 
+                .WithAuthor(deletedMessage.Author)
+                .WithColor(Color.Blue)
+                .WithCurrentTimestamp()
+                .WithFooter("Author ID: " + deletedMessage.Author.Id + " | Message ID: " + deletedMessage.Id)
+                .WithDescription("**Message sent by " + deletedMessage.Author.Mention + " deleted in **" + messageChannelDeletedFrom.Mention + "\n" + deletedMessage.Content);
+
+            var embed = builder.Build(); //Turns into actual embed for posting
+            await logChannel.SendMessageAsync("", false, embed: embed); //Posting to the log channel
+        }
+
+        private bool checkIfReactionsAreSame(SocketReaction reaction, string reactionUnicode)
+        {
+            if (reaction.Emote.Name == reactionUnicode)
+                return true;
+            else
+                return false;
+        }
+
+        private bool checkIfMessagesContainMessage(IEnumerable<IMessage> messagesInChannel, IUserMessage userMessage)
+        {
+            if (messagesInChannel.Contains(userMessage as IMessage))
+                return true;
+            else
+                return false;
         }
 
         private CourseLevel[] GetCourseLevels()
