@@ -85,26 +85,14 @@ namespace CSSA_Discord_Bot
         }
 
         //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_MessageUpdated
-        private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel socketChannel) //Message Update Handler
+        private async Task MessageUpdate(Cacheable<IMessage, ulong> before, SocketMessage after, ISocketMessageChannel socketChannel) //Message Update Event
         {
-            if (before.DownloadAsync().Result.Embeds.Count > 0)
-                return;
-            if (after.Embeds.Count > 0)
-                return;
-            var _logChannel = client.GetChannel(674307924662812682) as IMessageChannel; //Reads log channel for posting
-            var message = await before.GetOrDownloadAsync(); //Reads message prior to the change which is stored in cache
+            var beforeMessage = before.DownloadAsync().Result;
 
-            EmbedBuilder builder = new EmbedBuilder() //Handles Embed building, formatted with Timestamp of update to message 
-                .WithAuthor(message.Author)
-                .WithColor(Color.Blue)
-                .AddField("Before", message)
-                .AddField("After", after)
-                .AddField("\u200B", "\n" + message.GetJumpUrl())
-                .WithCurrentTimestamp()
-                .WithFooter("Author ID: " + message.Author.Id + " | Message ID: " + message.Id);
-            
-            var embed = builder.Build(); //Turns Embed builder to an Embed ready for posting
-            await _logChannel.SendMessageAsync("", false, embed: embed); //Posting Embed to log channel
+            if (checkForEmbeds(beforeMessage, after))
+                return;
+
+            await logUpdatedMessage(beforeMessage, after, socketChannel);
         }
 
         //https://docs.stillu.cc/api/Discord.WebSocket.BaseSocketClient.html#Discord_WebSocket_BaseSocketClient_MessageDeleted
@@ -174,6 +162,33 @@ namespace CSSA_Discord_Bot
 
             var embed = builder.Build(); //Turns into actual embed for posting
             await logChannel.SendMessageAsync("", false, embed: embed); //Posting to the log channel
+        }
+
+        private async Task logUpdatedMessage(IMessage beforeMessage, SocketMessage afterMessage, ISocketMessageChannel socketChannel)
+        {
+            var _logChannel = client.GetChannel(674307924662812682) as IMessageChannel;
+
+            EmbedBuilder builder = new EmbedBuilder() 
+                .WithAuthor(beforeMessage.Author)
+                .WithColor(Color.Blue)
+                .AddField("Before", beforeMessage)
+                .AddField("After", afterMessage)
+                .AddField("\u200B", "\n" + beforeMessage.GetJumpUrl())
+                .WithCurrentTimestamp()
+                .WithFooter("Author ID: " + beforeMessage.Author.Id + " | Message ID: " + beforeMessage.Id);
+
+            var embed = builder.Build();
+            await _logChannel.SendMessageAsync("", false, embed: embed);
+        }
+
+        private bool checkForEmbeds(IMessage message, SocketMessage secondMessage)
+        {
+            if (message.Embeds.Count > 0)
+                return true;
+            else if (secondMessage.Embeds.Count > 0)
+                return true;
+            else
+                return false;
         }
 
         private bool checkIfReactionsAreSame(SocketReaction reaction, string reactionUnicode)
