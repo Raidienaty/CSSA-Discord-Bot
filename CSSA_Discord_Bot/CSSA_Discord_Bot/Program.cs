@@ -102,6 +102,9 @@ namespace CSSA_Discord_Bot
             var messageChannel = socketChannel as IMentionable; 
             var message = await cachedMessage.GetOrDownloadAsync();
 
+            if (checkForEmbeds(message))
+                return;
+
             await logDeletedMessage(message, messageChannel);
         }
 
@@ -113,12 +116,16 @@ namespace CSSA_Discord_Bot
             var originalPoster = messageReactedTo.Author as SocketGuildUser;
             var user = reaction.User.Value as SocketGuildUser;
 
-            if (!(originChannel.Id == 747115357571121193)) //Checks for channel being #reaction-roles
-                return;
+            Console.WriteLine("Reaction Added");
+
             if (user.IsBot)
                 return;
             if (!originalPoster.IsBot)
                 return;
+            if (!(originChannel.Id == 752925552842637383)) //Checks for channel being #reaction-roles
+                return;
+
+            Console.WriteLine("Reaction Role channel");
 
             await roleSetForReactionRole(messageReactedTo, reaction, messagesInChannel);
         }
@@ -133,7 +140,7 @@ namespace CSSA_Discord_Bot
             {
                 foreach (var course in courseLevels[i].Course)
                 {
-                    if (checkIfMessagesContainMessage(messagesInChannel, messageReactedTo))
+                    if (checkIfMessagesContainMessage(messagesInChannel, messageReactedTo, i))
                     {
                         if (checkIfReactionsAreSame(reaction, course.courseEmoteUnicode))
                         {
@@ -182,6 +189,16 @@ namespace CSSA_Discord_Bot
             await _logChannel.SendMessageAsync("", false, embed: embed);
         }
 
+        private bool checkForEmbeds(IMessage message)
+        {
+            if (message == null)
+                return true;
+            if (message.Embeds.Count > 0)
+                return true;
+            else
+                return false;
+        }
+
         private bool checkForEmbeds(IMessage message, SocketMessage secondMessage)
         {
             if (message.Embeds.Count > 0)
@@ -200,9 +217,11 @@ namespace CSSA_Discord_Bot
                 return false;
         }
 
-        private bool checkIfMessagesContainMessage(IEnumerable<IMessage> messagesInChannel, IUserMessage userMessage)
+        private bool checkIfMessagesContainMessage(IEnumerable<IMessage> messagesInChannel, IUserMessage userMessage, int spotInArray)
         {
-            if (messagesInChannel.Contains(userMessage as IMessage))
+            CourseLevel[] courseLevels = GetCourseLevels();
+
+            if (messagesInChannel.ToArray()[courseLevels.Length - 1 - spotInArray].Id == userMessage.Id)
                 return true;
             else
                 return false;
